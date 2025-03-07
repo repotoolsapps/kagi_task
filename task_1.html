@@ -1,161 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Task 1</title>
-        <style>
-            widget {
-                display: block;
-                width: 300px;
-                border: 1px solid #ccc;
-                padding: 15px;
-                border-radius: 10px;
-                margin-bottom: 20px;
-            }
-            h3 {
-                font-size: 1.5em;
-                margin-bottom: 10px;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+    <style>
+        widget {
+            display: block;
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        /* FIRST WIDGET CODE START */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }   
+        
+        .expand-toggle {
+            display: none;
+        }
     
-            /* FIRST WIDGET CODE START */
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            li {
-                margin-bottom: 5px;
-            }
+        .expand-toggle:checked ~ #ingredient-list li:nth-child(n+11) {
+            display: list-item;
+        }
     
-            .expand-toggle {
-                display: none;
-            }
+        .expand-toggle:checked ~ .expand-toggle-label .more-text {
+            display: none;
+        }
     
-            .expand-toggle:checked ~ #ingredient-list li:nth-child(n+11) {
-                display: list-item;
-            }
+        .expand-toggle:checked ~ .expand-toggle-label .less-text {
+            display: inline;
+        }
     
-            .expand-toggle:checked ~ .expand-toggle-label .more-text {
-                display: none;
-            }
+        .expand-toggle-label {
+            display: none;
+            cursor: pointer;
+            color: blue;
+            text-align: center;
+            margin-top: 10px;
+        }
     
-            .expand-toggle:checked ~ .expand-toggle-label .less-text {
-                display: inline;
-            }
+        .more-text {
+            display: inline;
+        }
     
-            .expand-toggle-label {
-                display: none;
-                cursor: pointer;
-                color: blue;
-                text-align: center;
-                margin-top: 10px;
-            }
+        .less-text {
+            display: none;
+        }
     
-            .more-text {
-                display: inline;
-            }
+        #ingredient-list li:nth-child(n+11) {
+            display: none;
+        }
     
-            .less-text {
-                display: none;
-            }
-    
-            #ingredient-list li:nth-child(n+11) {
-                display: none;
-            }
-    
-            #ingredient-list li:nth-child(n+11) ~ .expand-toggle-label {
-                display: block;
-            }
+        #ingredient-list li:nth-child(n+11) ~ .expand-toggle-label {
+            display: block;
+        }
             
-            /* STYLES FOR THE FIRST WIDGET CODE END */
+        /* STYLES FOR THE FIRST WIDGET CODE END */
     
-            /* STYLES FOR THE SECOND WIDGET CODE START */
-            #text-content {
-                max-height: 160px; /* Adjust the max-height to show more than 5 lines */
-                overflow: hidden; 
-            }
+        /* STYLES FOR THE SECOND WIDGET CODE START */
+        #text-content {
+            max-height: 160px; /* Adjust the max-height to show more than 5 lines */
+            overflow: hidden; 
+        }
     
-            /* Show full content when the widget is activated with the :target selector */
-            #text-content:target {
-                max-height: none;
-            }
+        /* Show full content when the widget is activated with the :target selector */
+        #text-content:target {
+            max-height: none;
+        }
     
-            /* Styles for showing the links correctly */
-            .show-more, .show-less {
-                cursor: pointer;
-                color: blue;
-                text-align: center;
-                display: block;
-                margin-top: 10px;
-                text-decoration: none;
-            }
+        /* Styles for showing the links correctly */
+        .show-more, .show-less {
+            cursor: pointer;
+            color: blue;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
             
-            .show-less {
-                display:none;
-            }
+        .show-less {
+            display:none;
+        }
     
-            /* Show "Show less" only when the content is expanded */
-            #text-content:target ~ .show-more {
-                display: none;
-            }
+        /* Show "Show less" only when the content is expanded */
+        #text-content:target ~ .show-more {
+            display: none;
+        }
     
-            /* Show "Show more" only when the content is collapsed */
-            #text-content:target ~ .show-less {
-                display: block;
-            }
+        /* Show "Show more" only when the content is collapsed */
+        #text-content:target ~ .show-less {
+            display: block;
+        }
     
-            /* Ensure lines are displayed correctly before expanding */
-            #text-content p {
-                margin: 0;
-                padding: 0;
-                line-height: 1em;
-            }
+        /* Ensure lines are displayed correctly before expanding */
+        #text-content p {
+            margin: 0;
+            padding: 0;
+            line-height: 1em;
+        }
             
-            /* STYLES FOR THE SECOND WIDGET CODE END */
-        </style>
-    </head>
-    <body> 
-        <!-- First widget (List) Changue size with checkbox checked hidden -->
-        <widget>
-            <h3>Chicken Alfredo Recipe</h3>
-            <input type="checkbox" id="expand-widget-list" class="expand-toggle">
-            <ul id="ingredient-list">
-                <li><input type="checkbox"> 2 pounds chicken breast, diced</li>
-                <li><input type="checkbox"> 1 tablespoon olive oil</li>
-                <li><input type="checkbox"> 4 cloves garlic, minced</li>
-                <li><input type="checkbox"> 1 teaspoon dried basil</li>
-                <li><input type="checkbox"> 1 teaspoon dried oregano</li>
-                <li><input type="checkbox"> 1 cup heavy cream</li>
-                <li><input type="checkbox"> 1 cup chicken broth</li>
-                <li><input type="checkbox"> 1/2 cup grated Parmesan cheese</li>
-                <li><input type="checkbox"> 1/2 cup mozzarella cheese, shredded</li>
-                <li><input type="checkbox"> 1/2 teaspoon salt</li>
-                <li><input type="checkbox"> 1/4 teaspoon black pepper</li>
-                <li><input type="checkbox"> 1/2 teaspoon garlic powder</li>
-                <li><input type="checkbox"> 1/4 cup chopped parsley</li>
-                <li><input type="checkbox"> 1 pound fettuccine pasta</li>
-                <li><input type="checkbox"> 1 tablespoon butter</li>
-                <label for="expand-widget-list" class="expand-toggle-label">
-                    <span class="more-text">Show more</span>
-                    <span class="less-text">Show less</span>
-                </label>
-            </ul>
-        </widget>
-        <!-- Second widget (text) Changue size with url -->
-        <widget>
-            <h3>Why I'm Passionate About Programming</h3>  
-            <div id="text-content">
-                <p>Programming is more than just a job to me; it’s a passion that drives my curiosity every day. There’s something deeply satisfying about solving problems using code, knowing that each line brings me closer to something bigger.</p>
-                <p>The challenge of debugging is like a puzzle I enjoy solving. Every bug fixed feels like a victory, and the feeling of accomplishment is unmatched. The power to create something out of nothing, to bring an idea to life with just logic and creativity, is what makes programming special.</p>
-                <p>Every language I learn opens new doors, not just in terms of what I can build, but in how I approach problems. It allows me to see the world in a different way, breaking down complex systems into simpler, manageable parts. This skill is transferable to almost everything in life, making me more efficient and strategic in my thinking.</p>
-                <p>Moreover, the tech community is a big part of what fuels my passion. It’s a global network where ideas are exchanged freely, and everyone is working toward the same goal – innovation. Whether it’s through open-source contributions, attending meetups, or just reading up on new developments, I feel constantly inspired.</p>
-                <p>But the true joy of programming isn’t just in the result. It’s in the process: the moments of learning, the mistakes that lead to breakthroughs, and the endless possibilities that lie ahead. No two days are ever the same, and that’s what keeps me coming back.</p>
-                <p>Building software is like crafting an intricate piece of art. Each program is unique, and just like a masterpiece, it requires attention to detail, patience, and a deep understanding of the medium. It’s not always easy, but the end result makes it all worth it.</p>
-                <p>In the end, programming allows me to continuously challenge myself, grow, and discover new ways to express my ideas. It’s not just about writing code; it’s about creating, solving, and improving. This passion will never fade as long as there are problems to solve and new technologies to explore.</p>
-            </div> 
-            <a href="#text-content" class="show-more">Show more</a>
-            <a href="#" class="show-less">Show less</a>
-        </widget>
-    </body>
+        /* STYLES FOR THE SECOND WIDGET CODE END */
+    </style>
+</head>
+<body> 
+    <!-- First widget (List) Changue size with checkbox checked hidden -->
+    <widget>
+        <h3>Chicken Alfredo Recipe</h3>
+        <input type="checkbox" id="expand-widget-list" class="expand-toggle">
+        <ul id="ingredient-list">
+            <li><input type="checkbox"> 2 pounds chicken breast, diced</li>
+            <li><input type="checkbox"> 1 tablespoon olive oil</li>
+            <li><input type="checkbox"> 4 cloves garlic, minced</li>
+            <li><input type="checkbox"> 1 teaspoon dried basil</li>
+            <li><input type="checkbox"> 1 teaspoon dried oregano</li>
+            <li><input type="checkbox"> 1 cup heavy cream</li>
+            <li><input type="checkbox"> 1 cup chicken broth</li>
+            <li><input type="checkbox"> 1/2 cup grated Parmesan cheese</li>
+            <li><input type="checkbox"> 1/2 cup mozzarella cheese, shredded</li>
+            <li><input type="checkbox"> 1/2 teaspoon salt</li>
+            <li><input type="checkbox"> 1/4 teaspoon black pepper</li>
+            <li><input type="checkbox"> 1/2 teaspoon garlic powder</li>
+            <li><input type="checkbox"> 1/4 cup chopped parsley</li>
+            <li><input type="checkbox"> 1 pound fettuccine pasta</li>
+            <li><input type="checkbox"> 1 tablespoon butter</li>
+            <label for="expand-widget-list" class="expand-toggle-label">
+                <span class="more-text">Show more</span>
+                <span class="less-text">Show less</span>
+            </label>
+        </ul>
+    </widget>
+    <!-- Second widget (text) Changue size with url -->
+    <widget>
+        <h3>Why I'm Passionate About Programming</h3>  
+        <div id="text-content">
+            <p>Programming is more than just a job to me; it’s a passion that drives my curiosity every day. There’s something deeply satisfying about solving problems using code, knowing that each line brings me closer to something bigger.</p>
+            <p>The challenge of debugging is like a puzzle I enjoy solving. Every bug fixed feels like a victory, and the feeling of accomplishment is unmatched. The power to create something out of nothing, to bring an idea to life with just logic and creativity, is what makes programming special.</p>
+            <p>Every language I learn opens new doors, not just in terms of what I can build, but in how I approach problems. It allows me to see the world in a different way, breaking down complex systems into simpler, manageable parts. This skill is transferable to almost everything in life, making me more efficient and strategic in my thinking.</p>
+            <p>Moreover, the tech community is a big part of what fuels my passion. It’s a global network where ideas are exchanged freely, and everyone is working toward the same goal – innovation. Whether it’s through open-source contributions, attending meetups, or just reading up on new developments, I feel constantly inspired.</p>
+            <p>But the true joy of programming isn’t just in the result. It’s in the process: the moments of learning, the mistakes that lead to breakthroughs, and the endless possibilities that lie ahead. No two days are ever the same, and that’s what keeps me coming back.</p>
+            <p>Building software is like crafting an intricate piece of art. Each program is unique, and just like a masterpiece, it requires attention to detail, patience, and a deep understanding of the medium. It’s not always easy, but the end result makes it all worth it.</p>
+            <p>In the end, programming allows me to continuously challenge myself, grow, and discover new ways to express my ideas. It’s not just about writing code; it’s about creating, solving, and improving. This passion will never fade as long as there are problems to solve and new technologies to explore.</p>
+        </div> 
+        <a href="#text-content" class="show-more">Show more</a>
+        <a href="#" class="show-less">Show less</a>
+    </widget>
+</body>
 </html>
