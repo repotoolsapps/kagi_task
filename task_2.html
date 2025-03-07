@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px 0 15px;
+            width: 200px;
+            display: block;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Court Hearing Time Calculator</h1>
+    <p>Enter the details and click "Calculate" to know how long it will take until your hearing ends.</p>
+
+    <label for="name">Your name:</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label for="judges">Number of judges:</label>
+    <input type="number" id="judges" value="1" required>
+
+    <label for="others">Names of the other 4 people (separated by spaces):</label>
+    <input type="text" id="others" placeholder="Example: Adam Betty Frank Mike" required>
+
+    <button onclick="calculateCourtTime()">Calculate</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateCourtTime() {
+            // Get the input values
+            const name = document.getElementById('name').value.trim();
+            const judges = parseInt(document.getElementById('judges').value.trim());
+            const others = document.getElementById('others').value.trim();
+
+            // Validate inputs
+            if (!name || !others || isNaN(judges) || judges <= 0) {
+                alert('Please fill out all fields correctly.');
+                return;
+            }
+
+            // Split the names of the other people and add your name
+            const people = others.split(' ').concat(name);
+
+            // Sort the names alphabetically
+            people.sort(); 
+            // Find your position in the list
+            const position = people.indexOf(name);
+
+            // Calculate the number of full groups of judges
+            const peopleCount = people.length;
+            const groups = Math.ceil(peopleCount / judges);  // How many full groups of judges are there
+
+            // Calculate the time based on your position (along with the number of judges)
+            const time = Math.floor(position / judges) * 30;
+
+            // Show the result
+            document.getElementById('result').innerHTML = `Your hearing will end in ${time + 30} minutes.`;
+        }
+    </script>
+</body>
+</html>
