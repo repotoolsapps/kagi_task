@@ -57,9 +57,9 @@
             const startTime = performance.now();
 
             // Get the input values
-            const name = document.getElementById('name').value.toLowerCase().trim();
+            const name = document.getElementById('name').value.trim().toLowerCase();
             const judges = parseInt(document.getElementById('judges').value.trim());
-            const others = document.getElementById('others').value.toLowerCase().trim();
+            const others = document.getElementById('others').value.trim().toLowerCase();
 
             // Validate inputs
             if (!name || !others || isNaN(judges) || judges <= 0) {
@@ -72,18 +72,18 @@
 
             // Sort the names alphabetically
             people.sort(); 
+
             // Find your position in the list
             const position = people.indexOf(name);
-
-            // Calculate the number of full groups of judges
-            const peopleCount = people.length;
-            const groups = Math.ceil(peopleCount / judges);  // How many full groups of judges are there
 
             // Calculate the time based on your position (along with the number of judges)
             const time = Math.floor(position / judges) * 30;
 
-            const endTime = performance.now(); // End time measurement 
-            const executionTime = (endTime - startTime); // Execution time in milliseconds 
+            // End time measurement 
+            const endTime = performance.now();
+
+            // Execution time in milliseconds 
+            const executionTime = (endTime - startTime);
 
             // Show the result
             document.getElementById('result').innerHTML = `Your hearing will end in ${time + 30} minutes.<br>Execution time: ${executionTime} ms`;
