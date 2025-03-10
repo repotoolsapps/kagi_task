@@ -53,10 +53,13 @@
 
     <script>
         function calculateCourtTime() {
+             // Start time measurement
+            const startTime = performance.now();
+
             // Get the input values
-            const name = document.getElementById('name').value.trim();
+            const name = document.getElementById('name').value.toLowerCase().trim();
             const judges = parseInt(document.getElementById('judges').value.trim());
-            const others = document.getElementById('others').value.trim();
+            const others = document.getElementById('others').value.toLowerCase().trim();
 
             // Validate inputs
             if (!name || !others || isNaN(judges) || judges <= 0) {
@@ -65,7 +68,7 @@
             }
 
             // Split the names of the other people and add your name
-            const people = others.split(' ').concat(name);
+            const people = others.replace(/\s+/g, ' ').split(' ').concat(name);
 
             // Sort the names alphabetically
             people.sort(); 
@@ -79,8 +82,11 @@
             // Calculate the time based on your position (along with the number of judges)
             const time = Math.floor(position / judges) * 30;
 
+            const endTime = performance.now(); // End time measurement 
+            const executionTime = (endTime - startTime); // Execution time in milliseconds 
+
             // Show the result
-            document.getElementById('result').innerHTML = `Your hearing will end in ${time + 30} minutes.`;
+            document.getElementById('result').innerHTML = `Your hearing will end in ${time + 30} minutes.<br>Execution time: ${executionTime} ms`;
         }
     </script>
 </body>
