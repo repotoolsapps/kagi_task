@@ -8,12 +8,15 @@
         .widget-container {
             display: flex;
             gap: 20px;
-            justify-content: left;
+            justify-content: flex-start;
             align-items: flex-start;
+            overflow-x: auto; /* Permite el desplazamiento horizontal */
+            white-space: nowrap; /* Asegura que los elementos no se envuelvan en una nueva línea */
         }
 
         widget {
             display: block;
+            min-width: 300px;
             width: 300px;
             border: 1px solid #ccc;
             padding: 15px;
@@ -230,3 +233,4 @@
     </widget>
 </body>
 </html>
+
