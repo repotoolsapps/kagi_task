@@ -53,6 +53,12 @@
 
     <script>
         function calculateCourtTime() {
+            
+            // Validate inputs
+            if (!name || !others || isNaN(judges) || judges <= 0) {
+                alert('Please fill out all fields correctly.');
+                return;
+            }
              // Start time measurement
             const startTime = performance.now();
 
@@ -60,12 +66,6 @@
             const name = document.getElementById('name').value.trim().toLowerCase();
             const judges = parseInt(document.getElementById('judges').value.trim());
             const others = document.getElementById('others').value.trim().toLowerCase();
-
-            // Validate inputs
-            if (!name || !others || isNaN(judges) || judges <= 0) {
-                alert('Please fill out all fields correctly.');
-                return;
-            }
 
             // Split the names of the other people and add your name
             const people = others.replace(/\s+/g, ' ').split(' ').concat(name);
